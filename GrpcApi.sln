@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcApi", "GrpcApi\GrpcApi.csproj", "{109CE985-325C-4935-AF81-FBF484E5F736}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{D0CEB30A-3D43-45A7-B506-6D5BB000A555}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoGenerator", "ProtoGenerator\ProtoGenerator.csproj", "{96CF0FD5-83D6-43CA-8136-0B3CEF7A6935}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{109CE985-325C-4935-AF81-FBF484E5F736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{109CE985-325C-4935-AF81-FBF484E5F736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{109CE985-325C-4935-AF81-FBF484E5F736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{109CE985-325C-4935-AF81-FBF484E5F736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0CEB30A-3D43-45A7-B506-6D5BB000A555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0CEB30A-3D43-45A7-B506-6D5BB000A555}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0CEB30A-3D43-45A7-B506-6D5BB000A555}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0CEB30A-3D43-45A7-B506-6D5BB000A555}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96CF0FD5-83D6-43CA-8136-0B3CEF7A6935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96CF0FD5-83D6-43CA-8136-0B3CEF7A6935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96CF0FD5-83D6-43CA-8136-0B3CEF7A6935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96CF0FD5-83D6-43CA-8136-0B3CEF7A6935}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {76A10DC0-CA0B-400C-BE29-5557454B0736}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,13 @@
+syntax = "proto3";
+package GrpcApi.Shared;
+import "google/protobuf/empty.proto";
+
+message CounterState {
+   int32 Count = 1;
+}
+service Counter {
+   rpc Decrement (.google.protobuf.Empty) returns (.google.protobuf.Empty);
+   rpc Increment (.google.protobuf.Empty) returns (.google.protobuf.Empty);
+   rpc Subscribe (.google.protobuf.Empty) returns (stream CounterState);
+   rpc ThrowException (.google.protobuf.Empty) returns (.google.protobuf.Empty);
+}
