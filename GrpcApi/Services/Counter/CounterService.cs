@@ -1,57 +1,57 @@
-﻿using Shared;
-using System.Collections.Concurrent;
-using System.Reactive.Subjects;
+﻿using Grpc.Core;
+using Shared;
 
 namespace GrpcApi
 {
     public class CounterService : ICounter
     {
+        protected readonly CounterStateStorageService storage;
+
+        public CounterService(CounterStateStorageService storage)
+        {
+            this.storage = storage;
+        }
+
         public Task Decrement()
         {
-            throw new NotImplementedException();
+            var currentState = storage.GetCounterState();
+
+            currentState.Value.Count--;
+
+            return storage.SetCounterState(currentState.Value);
         }
 
         public Task Increment()
         {
-            throw new NotImplementedException();
-        }
+            var currentState = storage.GetCounterState();
 
-        public ConcurrentDictionary<string, BehaviorSubject<CounterState>> States { get; set; } = new();
+            currentState.Value.Count++;
+
+            return storage.SetCounterState(currentState.Value);
+        }
 
         public IAsyncEnumerable<CounterState> SubscribeAsync()
         {
-            var subj = GetCounterState();
+            var subj = storage.GetCounterState();
             return subj.ToAsyncEnumerable();
-        }
+        }   
 
-        public BehaviorSubject<CounterState> GetCounterState()
-        {
-            var rng = new Random();
-            BehaviorSubject<CounterState> counter = new BehaviorSubject<CounterState>(
-                        new CounterState
-                        {
-                            Count = rng.Next()
-                        });
-
-            lock (this)
-            {
-                if (!States.ContainsKey("test"))
-                {
-                    States["test"] = new BehaviorSubject<CounterState>(
-                        new CounterState
-                        {
-                            Count = counter.Value.Count,
-                        });
-                }
-            }
-
-            return States["test"];
-        }
-
-
+        
         public Task ThrowException()
         {
-            throw new NotImplementedException();
+            var rng = new Random();
+            object _ = rng.Next(0, 7) switch
+            {
+                0 => throw new Exception("Exception"),
+                1 => throw new ArgumentException("Argument exception"),
+                2 => throw new ArithmeticException("Arithmetic exception"),
+                3 => throw new IndexOutOfRangeException("IndexOutOfRange exception"),
+                4 => throw new RpcException(new Status(StatusCode.AlreadyExists, "Example AlreadyExists RpcException")),
+                5 => throw new RpcException(new Status(StatusCode.InvalidArgument, "Example InvalidArgument RpcException")),
+                _ => throw new RpcException(new Status(StatusCode.FailedPrecondition, "Example FailedPrecondition RpcException")),
+            };
+
+            return Task.CompletedTask;
         }
     }
 }

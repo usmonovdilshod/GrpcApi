@@ -1,0 +1,16 @@
+syntax = "proto3";
+package GrpcApi.Shared;
+import "google/protobuf/empty.proto";
+
+message List_TodoState {
+   repeated TodoState items = 1;
+}
+message TodoState {
+   int32 Id = 1;
+   string Name = 2;
+}
+service Todo {
+   rpc Create (TodoState) returns (.google.protobuf.Empty);
+   rpc GetAll (.google.protobuf.Empty) returns (List_TodoState);
+   rpc Subscribe (.google.protobuf.Empty) returns (stream TodoState);
+}
