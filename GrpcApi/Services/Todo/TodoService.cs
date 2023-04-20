@@ -21,7 +21,12 @@ namespace GrpcApi
         {
             var context = scope.ServiceProvider.GetService<MyDbContext>();
             var a = await context.Todos.ToListAsync();
-            return a;
+            List<TodoState> lists = new List<TodoState>();
+            foreach (var item in a)
+            {
+                lists.Add(new TodoState() { Id= item.Id, Name=item.Name});
+            }
+            return lists;
         }
         public Task Create(TodoState todo)
         {
@@ -61,7 +66,7 @@ namespace GrpcApi
             return States[key].ToAsyncEnumerable();
         }
 
-        private TodoState GetSetTodoState(TodoState? newState = null)
+        private TodoEntity GetSetTodoState(TodoState? newState = null)
         {
             lock (this)
             {
@@ -70,7 +75,8 @@ namespace GrpcApi
                 
                 if (newState != null)
                 {
-                    context.Add(newState);
+                    TodoEntity todoEntity = new TodoEntity() { Id= newState.Id, Name = newState.Name};
+                    context.Add(todoEntity);
                     context.SaveChanges();
                 }
                 var todo = context?.Todos.OrderBy(x=>x.Id).Last();

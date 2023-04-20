@@ -13,7 +13,7 @@ namespace GrpcApi
         }
 
         public DbSet<Counter> Counters { get; set; }
-        public DbSet<TodoState> Todos { get; set; }
+        public DbSet<TodoEntity> Todos { get; set; }
 
        
 
