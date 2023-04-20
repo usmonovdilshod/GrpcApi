@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcApi", "GrpcApi\GrpcApi.csproj", "{109CE985-325C-4935-AF81-FBF484E5F736}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcApi", "GrpcApi\GrpcApi.csproj", "{109CE985-325C-4935-AF81-FBF484E5F736}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{D0CEB30A-3D43-45A7-B506-6D5BB000A555}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{D0CEB30A-3D43-45A7-B506-6D5BB000A555}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoGenerator", "ProtoGenerator\ProtoGenerator.csproj", "{96CF0FD5-83D6-43CA-8136-0B3CEF7A6935}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoGenerator", "ProtoGenerator\ProtoGenerator.csproj", "{96CF0FD5-83D6-43CA-8136-0B3CEF7A6935}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

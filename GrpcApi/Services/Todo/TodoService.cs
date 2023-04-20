@@ -3,7 +3,7 @@ using Shared;
 using System.Collections.Concurrent;
 using System.Reactive.Subjects;
 
-namespace GrpcApi.Services.Todo
+namespace GrpcApi
 {
     public class TodoService : ITodo
     {
@@ -17,10 +17,11 @@ namespace GrpcApi.Services.Todo
             this.serviceProvider=serviceProvider;
             this.scope = serviceProvider.CreateScope();
         }
-        public Task<List<TodoState>> GetAll()
+        public async Task<List<TodoState>> GetAll()
         {
             var context = scope.ServiceProvider.GetService<MyDbContext>();
-            return context.Todos.ToListAsync();
+            var a = await context.Todos.ToListAsync();
+            return a;
         }
         public Task Create(TodoState todo)
         {
@@ -72,7 +73,7 @@ namespace GrpcApi.Services.Todo
                     context.Add(newState);
                     context.SaveChanges();
                 }
-                var todo = context?.Todos.Last();
+                var todo = context?.Todos.OrderBy(x=>x.Id).Last();
 
                 return todo;
             }

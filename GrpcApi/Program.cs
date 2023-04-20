@@ -1,5 +1,7 @@
 using Castle.Core.Configuration;
 using GrpcApi;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using ProtoBuf.Grpc.Server;
@@ -14,6 +16,15 @@ services.AddCodeFirstGrpc(config =>
 {
     config.ResponseCompressionLevel = System.IO.Compression.CompressionLevel.Optimal;
 });
+
+builder.WebHost.UseKestrel(server =>
+{
+    server.ConfigureEndpointDefaults(listenOptions =>
+    {
+        listenOptions.Use(next => new ClearTextHttpMultiplexingMiddleware(next).OnConnectAsync);
+    });
+});
+
 
 services.AddGrpc();
 
@@ -44,11 +55,12 @@ app.UseCors();
 
 app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
 app.MapGrpcService<CounterService>();
+app.MapGrpcService<TodoService>();
 
 var dbContextFactory = app.Services.GetRequiredService<IDbContextFactory<MyDbContext>>();
 await using var dbContext = dbContextFactory.CreateDbContext();
 //await dbContext.Database.MigrateAsync();
-// await dbContext.Database.EnsureDeletedAsync();
+//await dbContext.Database.EnsureDeletedAsync();
 await dbContext.Database.EnsureCreatedAsync();
 
 app.Run();
