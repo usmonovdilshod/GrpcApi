@@ -9,6 +9,11 @@
 
   <ItemGroup>
     <PackageReference Include="protobuf-net.Core" Version="3.2.16" />
+    <PackageReference Include="Protobuf.Grpc.Reflection" Version="1.0.170" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Protos\" />
   </ItemGroup>
 
 </Project>
